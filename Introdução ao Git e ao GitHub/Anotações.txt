@@ -1,0 +1,127 @@
+Introdução ao Git e o GitHUB
+
+vatangens: controle de versão, Armazenamento em nuvem, Trbalho em equipe, melhorar seu código, reconhecimento.
+
+Navegação via command line interface e instalação
+- comando basicos par aum bom desempenho  no terminal
+	-Mudar pastas
+	- listar as pastas
+	- Criar pastas/arquivos
+	-deletar pastas/arquivos
+
+comandos window
+
+-cd
+-dir
+-mkdir
+-del/rmdir
+
+dir lista todas as pastas do arquivo C
+
+cd / entra no diretorio C
+
+se eu escrevo o nome de alguma pasta, ex "windows" irá listar as os arquivos na pasta windows
+
+para retroceder digito cd..
+cls - para limpar a tela (clean screen)
+tecla TAB ela auto completa a palavra, basta colocar a primeira letra e apertar tab.
+
+mkdir (make directory) irá criar uma pasta
+echo - para criar um arquivo no repositorio, este comando printa de volta no temrinal uma frase passada. após nomear o arquivo é necessário digitar o simbolo >  para redirecionar o fluxo,jogando para o arquivo.
+
+del - comando de deletar a arquivos dentro de uma pasta, deve-se colocar o comando e em seguida espaço e nome da pasta que deseja deletar, apertando enter para concluir.
+
+o comando seta para cima consegue acessar todo os comandos ja listado anteriormente.
+
+rmdir - (remove directory) remove todo repositorio e os conteudos dele. deve-se digitar o comando e o repositorio que deseja deletar.
+
+Como o git funcina:
+
+SHA1
+Objetos fundamentais
+Sistemas distribuídos
+segurança
+
+SHA1: a sigla significa secure hash algorithm(algoritmo de hash seguro), é um conjunto de funções hash criptográficas Projetadas pela NSA(agencia de segurança nacional dos EUA)
+
+A encriptação gera conjunto de caracteres identificador de 40 digitos. A cada alteração ele irá gerar um novo conjunto de caracteres.O SHA1 é uma forma curta de representar um arquivo.
+
+Objetos internos do Git(Objetos fundamentais)
+-BLOBS
+-TREES
+-COMMITS
+
+BLOBS-contém metadados do Git, que são o tipo de objeto, tamanho da sting, do arquivo. O blob é um objeto que encapsula esse comportamento de diretórios, ele é usado para apontar para diretórios que contém arquivos e que por consequencia apontam para arquivos também.
+
+TREES - armazenam os blobs então é uma crescente: o blob sendo o bloco básico de composição, a tree armazenando e apontando para tipos de blobs diferentes.
+as trees ela também possuem metadados, ela aponta para um blob que por sua vez tem um SHA1.
+A tree, também guarda o nome desse arquivo, o que é diferente do blob que não guarda o nome do arquivo, o blob guarda o SHA1 do arquivo que são os caracteres identificador dele. 
+
+A tree vai ser responsável por montar toda estrutura e onde está localizado os arquivos. Portanto a tree pode apontar tanto para os blobs("arquivos")ou para outras Trees.
+A tree também tem um SHA1 desse metadado.
+
+os blobs possuem o SHA1 do arquivo, as tree apotam para blobs e ali tem os metadados encriptados d tree, ou seja ao mudar alguma coisa em um arquivo que a tree está apontando, irá alterar toda estrutura, toda leitura de encriptação dessa tree, estrutura e objeto. Alterando o SHA1 do blob, altera o SHA1 da tree.
+
+****POR QUE ISSO ACONTECE?***
+Porque os diretorios dentro de um sistema operacional podem conter outros diretórios.
+
+***********************************************
+
+Commit- é o objeto que vai unir tudo, dará sentido para alteração que está sendo realizada.
+O commit aponta para uma tree, ele aponta para um "parente", ou seja aponta para o último commit realizado antes dele, o commit aponta para o autor, o commit aponta para uma mensagem tambem.
+os commits também possuem encriptação SHA1, que é a geração desse HASH de 40 caracteres identificador do seus metadados. O que significa que, alterando qualquer coisa em um arquivo(blob), isso vai refletir na tree que, por consequencia vai refletir no seu commit. por isso que o Git é muit confiável. ao checar os historicos do commit, percebe-se uma linha do tempo de quais commits foram realizado. O commit é unico para cada autor.
+**********************************************
+Chave SSH e Token
+
+Chave SSH- de modo geral é uma forma de estabelecer uma conexão segura e encriptada entre duas maquinas. Terá sempre uma chave publica e uma chave privada.
+
+************************************
+-git init
+-git add
+-git commit
+
+criando um repositorio
+
+mkdir livro-receitas
+ls (para confirmar a criação de uma pasta dentro da pasta workspace)
+cd livro-receitas
+git init
+ls (o comando ls não irá mostrar o comando git, pois este é oculto(untracked))
+ls -a ( este comando irá mostrar o comando git(tracked))
+cd . git/ (vai entrar na estrutura)
+ls (vai listar a estrtura do git)
+
+criando um arquivo dentro da pasta livro de receita:
+
+antes a configuração abaixo deve ser feita se for a primeira vez que está usando o git, isso é necessário porque quando um commit é criado, ele precisa de um autor, então precisamos fornecer esse dados para depois poder gerar um commit.
+
+git config --global user.email "seu email"
+git config --global name Perkles
+
+-----------------------------------------
+
+git add * (joga diretamente o arquivo do untracked para o tracked staged)
+git commit -m "commit iniciar"
+
+****************************************
+ciclo de vida dos arquivos no GIT
+-passo a passo no ciclo de vida:
+
+Git init (quando inicia o git init iniciamos um repositorio)
+	tracked
+		unmodified - ainda n foi modificado
+		modified - arquivo ja sofreu modificação
+		staged - é onde fica os arquivos que estão se preparando para poder fazer parte de outro tipo de agrupamento
+	untracked
+
+para enviar para o repositorio remoto é necessário esta com tudo commitado
+
+
+
+
+
+
+
+
+
+
